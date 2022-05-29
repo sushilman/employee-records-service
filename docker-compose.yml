@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  employee-records-postgres:
+    image: "postgres:latest"
+    container_name: "employee_records_postgres"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ~/Docker/employee-records-db/data:/var/lib/postgresql/data
+  
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: secret
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - "8080:80"
