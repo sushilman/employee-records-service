@@ -1,10 +1,16 @@
-#[macro_use] extern crate rocket;
+#[macro_use]extern crate rocket;
+#[macro_use]extern crate diesel;
 
 mod routes;
 mod models;
+mod schema;
+mod repo;
+mod db_connection;
 
 #[launch]
-fn app() -> _ {
+fn rocket() -> _ {
+    //let connection = db_connection::establish_connection();
+    
     rocket::build()
         .mount("/", routes![
             routes::index,

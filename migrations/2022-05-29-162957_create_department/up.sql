@@ -1,7 +1,7 @@
 -- Departments table
 CREATE TABLE departments (
-  department_id SERIAL PRIMARY KEY,
+  department_id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR NOT NULL,
-  created_at DATE NOT NULL DEFAULT NOW(),
-  updated_at DATE NOT NULL DEFAULT NOW()
+  created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );

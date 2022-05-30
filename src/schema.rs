@@ -2,8 +2,8 @@ table! {
     departments (department_id) {
         department_id -> Int4,
         name -> Varchar,
-        created_at -> Date,
-        updated_at -> Date,
+        created_at -> Timestamptz,
+        updated_at -> Timestamptz,
     }
 }
 
@@ -13,8 +13,8 @@ table! {
         name -> Varchar,
         email -> Varchar,
         department_id -> Nullable<Int4>,
-        created_at -> Date,
-        updated_at -> Date,
+        created_at -> Timestamptz,
+        updated_at -> Timestamptz,
         active -> Bool,
     }
 }

@@ -1,21 +1,40 @@
-use rocket::request::FromRequest;
 use rocket::serde::{Deserialize, Serialize};
+use chrono::{ DateTime, Utc };
+use super::schema::departments;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Queryable, Serialize, Deserialize)]
 #[serde(crate = "rocket::serde")]
+//#[table_name = "departments"]
 pub struct Department {
-    pub department_id: usize,
+    pub department_id: i32,
     pub name: String,
-    pub created_at: String,
-    pub modified_at: String,
+    pub created_at: DateTime<Utc>,
+    pub updated_at: DateTime<Utc>,
 }
 
 #[derive(Serialize, Deserialize)]
 #[serde(crate = "rocket::serde")]
-pub struct InsertableDepartment<'a> {
-    pub name: &'a str,
+pub struct DepartmentCreation{
+    pub name: String
 }
 
-impl InsertableDepartment<'_> {
+#[derive(Serialize, Deserialize)]
+#[serde(crate = "rocket::serde")]
+pub struct DepartmentCreationResponse{
+    pub link: String
+}
 
+#[derive(Insertable, Serialize, Deserialize)]
+#[serde(crate = "rocket::serde")]
+#[table_name = "departments"]
+pub struct InsertableDepartment {
+    pub name: String,
+}
+
+impl InsertableDepartment {
+    pub fn from_department_creation(d: DepartmentCreation) -> InsertableDepartment {
+        InsertableDepartment {
+            name: d.name,
+        }
+    }
 }
