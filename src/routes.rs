@@ -16,7 +16,7 @@ pub fn create_department(department: Json<DepartmentCreation>) -> Result<Json<De
     let result = repo::insert(department, &mut conn);
     let d: Department = result.unwrap();
     let response = DepartmentCreationResponse{
-        link: format!("/deparments/{}", d.department_id),
+        link: format!("/departments/{}", d.department_id),
     };
 
     Ok(Json(response))
