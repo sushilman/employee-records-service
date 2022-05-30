@@ -9,5 +9,8 @@ fn app() -> _ {
         .mount("/", routes![
             routes::index,
             routes::get_departments, // GET /departments
+            routes::get_department_by_id, // GET /departments/<department_id>
+            routes::create_department, // POST /departments
+
         ])
 }
