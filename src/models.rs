@@ -38,3 +38,9 @@ impl InsertableDepartment {
         }
     }
 }
+
+#[derive(Serialize, Deserialize)]
+pub struct ApiError {
+    pub status: u16,
+    pub message: String, 
+}

@@ -35,7 +35,7 @@ pub fn get_departments() -> Result<Json<Vec<Department>>, Status> {
 #[get("/departments/<department_id>")]
 pub fn get_department_by_id(department_id: i32) -> Result<Json<Department>, Status> {
     let mut conn = db_connection::establish_connection();
-    let result = repo::get_department_by_id(department_id, &mut conn);
-    
-    Ok(Json(result.unwrap()))
+    repo::get_department_by_id(department_id, &mut conn)
+        .map(|d| Json(d))
+        .map_err(|_err| Status::NotFound)
 }
