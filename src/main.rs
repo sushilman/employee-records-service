@@ -21,7 +21,7 @@ fn rocket() -> _ {
             routes::get_departments, // GET /departments
             routes::get_department_by_id, // GET /departments/<department_id>
             routes::create_department, // POST /departments
-
+            routes::create_employees,  // POST /departments/<department_id>/employees
         ])
 }
 

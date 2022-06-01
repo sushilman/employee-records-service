@@ -12,7 +12,7 @@ table! {
         employee_id -> Int4,
         name -> Varchar,
         email -> Varchar,
-        department_id -> Nullable<Int4>,
+        department_id -> Int4,
         created_at -> Timestamptz,
         updated_at -> Timestamptz,
         active -> Bool,
