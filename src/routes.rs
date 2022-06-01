@@ -1,6 +1,6 @@
 use super::repo;
 use rocket::serde::json::Json;
-use super::models::{ Department, DepartmentCreation, DepartmentCreationResponse, InsertableDepartment, Employee, EmployeeCreation, EmployeeCreationResponse, InsertableEmployee };
+use super::models::{ Department, DepartmentCreation, DepartmentCreationResponse, InsertableDepartment, EmployeeCreation, EmployeeCreationResponse, InsertableEmployee };
 use rocket::http::Status;
 use super::db_connection;
 
