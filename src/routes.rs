@@ -1,6 +1,6 @@
 use super::repo;
 use rocket::serde::json::Json;
-use super::models::{ Department, DepartmentCreation, DepartmentCreationResponse, InsertableDepartment, EmployeeCreation, EmployeeCreationResponse, InsertableEmployee };
+use super::models::{ Department, DepartmentCreation, DepartmentCreationResponse, InsertableDepartment, Employee, EmployeeCreation, EmployeeCreationResponse, InsertableEmployee };
 use rocket::http::Status;
 use super::db_connection;
 
@@ -39,7 +39,6 @@ pub fn get_department_by_id(department_id: i32) -> Result<Json<Department>, Stat
         .map_err(|_err| Status::NotFound)
 }
 
-// TODO: handle error when department_id does not exist
 #[post("/departments/<department_id>/employees", data = "<employee>")]
 pub fn create_employees(department_id: i32, employee: Json<EmployeeCreation>) -> Result<Json<EmployeeCreationResponse>, Status> {
     let mut conn = db_connection::establish_connection();
@@ -64,4 +63,20 @@ pub fn create_employees(department_id: i32, employee: Json<EmployeeCreation>) ->
             _ => Status::InternalServerError
         }
     })
+}
+#[get("/departments/<department_id>/employees")]
+pub fn get_employees(department_id: i32) -> Result<Json<Vec<Employee>>, Status> {
+    let mut conn = db_connection::establish_connection();
+    let result = repo::get_employees(department_id, &mut conn);
+    let employees: Vec<Employee> = result.unwrap();
+
+    Ok(Json(employees))
+}
+
+#[get("/departments/<department_id>/employees/<employee_id>")]
+pub fn get_employee_by_id(department_id: i32, employee_id: i32) -> Result<Json<Employee>, Status> {
+    let mut conn = db_connection::establish_connection();
+    repo::get_employee_by_id(department_id, employee_id, &mut conn)
+        .map(|e| Json(e))
+        .map_err(|_err| Status::NotFound)
 }
