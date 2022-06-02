@@ -9,8 +9,8 @@ A basic microservice to keep the employee records.
  - Diesel
 
 ## Allowed actions
- - Create a department _(TODO)_
- - Create an employee under a department _(TODO)_
- - Retrieve a list of departments _(TODO)_
- - Retrieve the list of employees under a department _(TODO)_
+ - Create a department
+ - Create an employee under a department
+ - Retrieve a list of departments
+ - Retrieve the list of employees under a department
  - Delete the employee _(TODO)_
