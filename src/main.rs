@@ -1,5 +1,5 @@
-#[macro_use]extern crate rocket;
-#[macro_use]extern crate diesel;
+#[macro_use] extern crate rocket;
+#[macro_use] extern crate diesel;
 
 use crate::models::ApiError;
 use rocket::serde::json::Json;
@@ -13,8 +13,8 @@ mod db_connection;
 
 #[launch]
 fn rocket() -> _ {
-    //let connection = db_connection::establish_connection();
     rocket::build()
+        .manage(db_connection::establish_connection())
         .register("/", catchers![not_found, internal_server_error])
         .mount("/", routes![
             routes::index,
